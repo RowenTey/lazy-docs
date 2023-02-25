@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const ChatBox = ({ setMessages, loading, setLoading }) => {
@@ -14,18 +15,28 @@ const ChatBox = ({ setMessages, loading, setLoading }) => {
 
 		// new loading message
 		setTimeout(() => {
-			const loadingMessage = { from: "chatbot", content: "Loading ..." };
+			const loadingMessage = {
+				from: "chatbot",
+				content: "Loading ... This might take a while",
+			};
 			setMessages(prevMessage => [loadingMessage, ...prevMessage]);
 		}, 1000);
 
-		// got message
-		setTimeout(() => {
+		const BASE_URL = "http://127.0.0.1:5000/chatbot/chat";
+
+		try {
+			const newMsg = await axios.post(BASE_URL, {
+				question: query,
+			});
+
+			const response = newMsg.data?.answer[0]?.answer;
+
 			// remove last message
-			const newMessage = { from: "chatbot", content: "Answer from api" };
+			const newMessage = { from: "chatbot", content: response };
 
 			setMessages(prevMessage => [newMessage, ...prevMessage.slice(1)]);
 			setLoading(false);
-		}, 3000);
+		} catch (error) {}
 	};
 
 	const handleKeyDown = e => {

@@ -5,52 +5,7 @@ import userPfp from "../../assets/user-pfp.png";
 import leftSymbol from "../../assets/left-symbol.svg";
 
 const ChatBot = () => {
-	const [messages, setMessages] = useState([
-		{
-			from: "chatbot",
-			content: "Hello",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-		{
-			from: "user",
-			content: "dhuehdeudh",
-		},
-	]);
+	const [messages, setMessages] = useState([]);
 	const bottomDiv = useRef(null);
 	const [loading, setLoading] = useState(false);
 
@@ -63,43 +18,46 @@ const ChatBot = () => {
 				<img src={leftSymbol} />
 			</button>
 			<div className="flex flex-col items-center py-[1rem] h-[90%] px-[1rem] rounded-lg text-start justify-end bg-[#0F172A]">
-				<h1 className="font-bold text-4xl mb-4 text-white">Chatbot</h1>
-				<div className="flex flex-col-reverse w-[900px] overflow-y-scroll px-[1rem] mb-6 scrollbar-hide bg-[#15203b]">
-					<div ref={bottomDiv} />
-					{messages.map((message, index) => (
-						<div
-							className={`flex items-end ${
-								message.from == "chatbot" ? "flex-row" : "flex-row-reverse"
-							}`}
-						>
-							<img
-								src={message.from == "chatbot" ? chatbotPfp : userPfp}
-								alt={message.from == "chatbot" ? "chatbot-pfp" : "user-pfp"}
-								className="w-[75px] h-[75px]"
-							/>
+				<h1 className="font-bold text-4xl  text-white mb-4">Chatbot</h1>
+				<div className="flex flex-col items-center py-[1rem] h-full px-[1rem] rounded-lg text-start justify-end bg-[#1b294b]">
+					<div className="flex flex-col-reverse w-[900px] overflow-y-scroll px-[1rem] mb-6 scrollbar-hide ">
+						<div ref={bottomDiv} />
+						{messages.map((message, index) => (
 							<div
-								className={`rounded-lg py-[0.5rem] px-[1rem] text-black max-w-[60%]`}
-								style={{
-									margin:
-										message.from == "chatbot"
-											? "1rem auto 15px 0"
-											: "1rem 0 15px auto",
-									overflowWrap: "break-word",
-									backgroundColor:
-										message.from == "user" ? "#86C5D8" : "#F9AEAE",
-								}}
-								key={`msg-${index}`}
+								className={`flex items-end ${
+									message.from == "chatbot" ? "flex-row" : "flex-row-reverse"
+								}`}
+								key={index}
 							>
-								{message?.content}
+								<img
+									src={message.from == "chatbot" ? chatbotPfp : userPfp}
+									alt={message.from == "chatbot" ? "chatbot-pfp" : "user-pfp"}
+									className="w-[75px] h-[75px]"
+								/>
+								<div
+									className={`rounded-lg py-[0.5rem] px-[1rem] text-black max-w-[60%]`}
+									style={{
+										margin:
+											message.from == "chatbot"
+												? "1rem auto 15px 0"
+												: "1rem 0 15px auto",
+										overflowWrap: "break-word",
+										backgroundColor:
+											message.from == "user" ? "#86C5D8" : "#F9AEAE",
+									}}
+									key={`msg-${index}`}
+								>
+									{message?.content}
+								</div>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
+					<ChatBox
+						setMessages={setMessages}
+						loading={loading}
+						setLoading={setLoading}
+					/>
 				</div>
-				<ChatBox
-					setMessages={setMessages}
-					loading={loading}
-					setLoading={setLoading}
-				/>
 			</div>
 		</div>
 	);

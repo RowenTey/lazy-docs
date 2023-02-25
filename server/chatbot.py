@@ -3,6 +3,7 @@ from flask import request
 from haystack.pipelines import Pipeline
 from haystack.nodes import OpenAIAnswerGenerator
 from haystack.schema import Document
+from flask_cors import cross_origin
 import openai
 
 
@@ -11,13 +12,22 @@ bp = Blueprint("chatbot", __name__, url_prefix="/chatbot")
 # with open("ur file", "rb") as f:
 #     classifier = joblib.load(f)
 
-@bp.route("/chat")
+@bp.route("/chat", methods=["POST"])
+@cross_origin()
 def ask():
-    userId = request.args.get("userid")
+    try:
+        question = request.get_json()
+    
+    except:
+        return "Error in question", 400
+
+    print(question)
+    
+    if question is None:
+        return "Question is missing", 400
     
     doc_dir = "./data/user1/example.txt"
 
-    
     docs = []
     
     with open(doc_dir, "r") as file:
@@ -38,10 +48,10 @@ def ask():
     pipe = Pipeline()
     pipe.add_node(component=node, name="prompt_node", inputs=["Query"])
     
-    output = pipe.run(query="What is the conclusion?", documents=docs)
+    output = pipe.run(query=question, documents=docs)
     
     if (not len(output["answers"])):
-        return {"answer": "Sorry, I don't know the answer to that."}
+        return {"answer": "Sorry, I don't know the answer to that.", "error": "true"}
     
     return {"answer": output["answers"]}
 
