@@ -9,16 +9,48 @@ def process_paper(text):
     text = re.sub(r'(?<=[a-zA-Z])-(?=[a-zA-Z])', '', text)
     text = (text.encode('ascii', 'ignore')).decode("utf-8")
 
-    # Extracting the highlights, body from the paper
-    body_main = text
-
     # Making a copy of the body, removing punctuations & extra spaces
-    body_copy = body_main
-    body_copy = re.sub('[^\w\s\d\.]', '', body_copy)
-    body_copy = ' '.join(body_copy.split())
-    # body_copy = body_copy.split(".")
+    body = text
+    # body = re.sub('[^\w\s\d\.]', '', body)
 
-    return body_copy
+    return body
+
+
+def split_string(string, max_length=1500):
+    # Split the string into a list of words
+    words = string.split()
+
+    # Create a list to hold the sublists
+    sublists = []
+
+    # Loop over the words and group them into sublists of up to max_length words
+    sublist = []
+    for word in words:
+        if len(' '.join(sublist)) + len(word) > max_length:
+            sublists.append(sublist)
+            sublist = []
+        sublist.append(word)
+
+    # Add the last sublist to the list of sublists
+    if len(sublist) > 6:
+        sublists.append(sublist)
+
+    # Join the sublists back into strings
+    result = [' '.join(sublist) for sublist in sublists]
+
+    return result
+
+
+def check_dic(dic):
+    for key, values in dic.items():
+        dic[key] = split_string(values)
+
+    # for key, val in dic.items():
+    #     print("key: " + key + '\n')
+    #     print()
+    #     print("val: ", val)
+
+    return dic
 
 
 def section_detection(text):
@@ -45,24 +77,24 @@ def section_detection(text):
         except IndexError:
             dic[title_list[i]] = cleaned_text[all[1][i]:]
 
+    # remove references & acknowledgements
     if 'Acknowledgments' in dic:
         del dic['Acknowledgments']
 
     if 'References' in dic:
         del dic['References']
 
+    dic = check_dic(dic)
+
     return dic
 
 
 if __name__ == '__main__':
     from read_file import read_file
-    text = read_file("../research_paper.pdf")
-
-    # tmp = ' '.join(process_paper(text)[1])
-    # print(tmp)
+    text = read_file("../research_paper.pdf")[1]
     res = section_detection(text)
 
-    for key, val in res.items():
-        print("key: " + key + '\n')
-        print("val: " + val + '\n')
-        print()
+    # for key, val in res.items():
+    #     print("key: " + key + '\n')
+    #     print("val: " + val + '\n')
+    #     print()
