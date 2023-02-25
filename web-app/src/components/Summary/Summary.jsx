@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 const Summary = () => {
-  const powerpointHandler = () => {
-    console.log("powerpoint");
-  };
-  const posterHandler = () => {
-    console.log("posters");
-  };
-
+  let url = "";
   return (
     <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
       <div className="w-3/6 bg-slate-900 text-white text-center p-10 rounded max-w-3xl max-h-screen ">
@@ -31,20 +25,22 @@ const Summary = () => {
           magna. Sed volutpat malesuada elit, quis consequat tortor efficitur
           eget. Nunc eget gravida erat, nec congue nisi.
         </div>
-        <button
-          onClick={powerpointHandler}
-          type="button"
-          class="m-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        >
-          Get Powerpoint
-        </button>
-        <button
-          onClick={posterHandler}
-          type="button"
-          class="m-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        >
-          Get Posters
-        </button>
+        <a href={url} download="myPpt.pptx">
+          <button
+            type="button"
+            class="m-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          >
+            Get Powerpoint
+          </button>
+        </a>
+        <a href={url} download>
+          <button
+            type="button"
+            class="m-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          >
+            Get Posters
+          </button>
+        </a>
         <Link to="/chatbot">
           <button
             type="button"
