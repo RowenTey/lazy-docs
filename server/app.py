@@ -1,5 +1,6 @@
 from flask import Flask
 import prediction
+import chatbot
 import os
 
 def create_app(test_config = None):
@@ -16,6 +17,7 @@ def create_app(test_config = None):
         pass
     
     app.register_blueprint(prediction.bp)
+    app.register_blueprint(chatbot.bp)
     
     @app.route("/")
     def hello():
