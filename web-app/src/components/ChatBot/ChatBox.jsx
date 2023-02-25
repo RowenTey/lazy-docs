@@ -24,6 +24,7 @@ const ChatBox = ({ setMessages, loading, setLoading }) => {
 			const newMessage = { from: "chatbot", content: "Answer from api" };
 
 			setMessages(prevMessage => [newMessage, ...prevMessage.slice(1)]);
+			setLoading(false);
 		}, 3000);
 	};
 
@@ -43,11 +44,13 @@ const ChatBox = ({ setMessages, loading, setLoading }) => {
 				className="px-4 py-2 mr-2 rounded-md w-[840px]"
 				onChange={e => setQuery(e.target.value)}
 				onKeyDown={handleKeyDown}
+				disabled={loading}
 			/>
 			<button
 				type="submit"
 				onClick={handleSubmit}
 				className="px-4 py-2 bg-blue-200 rounded-md"
+				disabled={loading}
 			>
 				Send
 			</button>

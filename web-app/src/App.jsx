@@ -4,7 +4,7 @@ import Start from "./components/Start/Start";
 import Summary from "./components/Summary/Summary";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import ChatBot from "./components/ChatBot/ChatBot";
-import Poster from "./components/Poster/Poster";
+import PosterPage from "./components/Poster/PosterPage";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -16,7 +16,7 @@ function App() {
 				<Route exact path="/loading" element={<LoadingPage />}></Route>
 				<Route exact path="/summary" element={<Summary />}></Route>
 				<Route exact path="/chatbot" element={<ChatBot />}></Route>
-				<Route exact path="/poster" element={<Poster />}></Route>
+				<Route exact path="/poster" element={<PosterPage />}></Route>
 			</Routes>
 		</Router>
 	);
