@@ -17,7 +17,7 @@ def process_paper(text):
     return body
 
 
-def split_string(string, max_length=1000):
+def split_string(string, max_length=500):
     # Split the string into a list of words
     words = string.split()
 

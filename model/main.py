@@ -4,6 +4,17 @@ from lib.read_file import read_file
 from lib.preprocess import section_detection
 from lib.generate_ppt import generate_ppt
 from lib.agent import OpenAIAgent
+import openai
+
+
+openai.api_key = "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"
+
+
+def respond(self, prompt, max_tokens=2048):
+    completion = openai.Completion.create(
+        engine="text-davinci-003", prompt=prompt, max_tokens=max_tokens)
+    return completion.choices[0]['text']
+
 
 # read the file
 content = read_file("test1.pdf")
@@ -24,10 +35,14 @@ for key, value in processed_content.items():
     summarised = "\n".join(output)
     summarised_content.append(summarised)
 
-# generate ppt
-generate_ppt(summarised_content, content[0], "research.ppt")
+print(summarised_content)
 
-# agent = OpenAIAgent(filename="research_paper.pdf")
-# agent.get_content()
-# agent.get_page_by_page_summary()
-# print(agent.get_overall_summary())
+gpt_content = []
+for content in summarised_content:
+    res = respond(f"Rewrite this to be more neat and concise:\n{content}")
+    gpt_content.append(res)
+
+print(gpt_content)
+
+# generate ppt
+# generate_ppt(summarised_content, content[0], "research.ppt")
