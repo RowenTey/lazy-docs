@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import summaryData from "../../../../data/summary.txt";
 import fs from "fs"
-// import axios from "axios";
+import axios from "axios"
+// import researchPpt from "../../../../output/research.ppt"
 
 
 const Summary = () => {
-  let url = "../../../../output/research.ppt";
   const [summary, setSummary] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   
@@ -26,19 +26,34 @@ const Summary = () => {
     readFromTxtFile();
   }, [])
 
+  const downloadFile = () => {
+    const fileUrl = '../../../../output/research.ppt';
+    let url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'my_presentation.ppt';
+    link.click();
+
+    
+					// let a = document.createElement('a');
+					// a.href = url;
+					// a.download = 'employees.json';
+					// a.click();
+  }
+ 
   return (
     <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
       <div className="w-3/6 bg-slate-900 text-white text-center p-10 rounded max-w-3xl max-h-screen min-h-[80%]">
         <h1 className="font-extrabold text-4xl p-3 mb-3">Summary</h1>
         <div className="leading-8 px-5 max-h-72 overflow-auto">{summary}</div>
-          <a href={url} download="research_paper.pptx">
+          <div onClick={() => downloadFile()}>
             <button
               type="button"
               className="m-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
             >
               Get Powerpoint
             </button>
-          </a>
+          </div>
           <Link to="/poster">
             <button
               type="button"

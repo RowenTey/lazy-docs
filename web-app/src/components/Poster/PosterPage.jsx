@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Poster from "./Poster";
 import leftSymbol from "../../assets/left-symbol.svg";
 import html2canvas from "html2canvas";
