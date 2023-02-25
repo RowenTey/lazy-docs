@@ -28,13 +28,15 @@ class OpenAIAgent():
         res = read_file(self.filename)
         self.title, content = res
         self.sections = section_detection(content)
+        print("Got content!")
 
     def get_page_by_page_summary(self):
         for section, content in self.sections.items():
-            for parts in content:
-                summarised_page = self.respond(
-                    f"Summarise this paragraph:\n{parts}")
-                self.full_summarised_content += summarised_page
+            # for parts in content:
+            summarised_page = self.respond(
+                f"Summarise this paragraph:\n{content}")
+            print("Paragraph summarised!")
+            self.full_summarised_content += summarised_page
 
     def get_overall_summary(self, max_tokens=2048):
         self.summary = self.respond(

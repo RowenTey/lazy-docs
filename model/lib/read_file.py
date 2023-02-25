@@ -15,3 +15,8 @@ def read_file(filename):
         if page_num == 0:
             title = text.split('\n')[0]
     return [title, text]
+
+
+if __name__ == '__main__':
+    res = read_file("../research_paper.pdf")
+    print(res[1])
