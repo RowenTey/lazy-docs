@@ -27,18 +27,35 @@ const Summary = () => {
   }, [])
 
   const downloadFile = () => {
-    const fileUrl = '../../../../output/research.ppt';
-    let url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = 'my_presentation.ppt';
-    link.click();
+    const file = '../../../../output/research.ppt';
+    // let url = window.URL.createObjectURL(blob);
+    
+    
+    // create a new FileReader instance
+    const reader = new FileReader();
+
+    // read the file as a binary string
+    reader.readAsBinaryString(file);
+
+    // handle the 'load' event when the file is loaded
+    reader.onload = () => {
+      // create a new blob from the binary string
+      const blob = new Blob([reader.result], { type: 'application/vnd.ms-powerpoint' });
+
+      // create a URL for the blob
+      const url = URL.createObjectURL(blob);
 
     
 					// let a = document.createElement('a');
 					// a.href = url;
 					// a.download = 'employees.json';
 					// a.click();
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'my_presentation.ppt';
+      link.click();
+    }
   }
  
   return (
