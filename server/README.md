@@ -2,6 +2,7 @@
 ```
 python -m venv ./venv
 ```
+Python 3.9+
 
 ## Install dependencies
 ```
