@@ -4,6 +4,7 @@ const PDFUploader = () => {
   const [file, setFile] = useState(null);
 
   const handleFileInputChange = (e) => {
+    console.log(e.target.files[0]);
     setFile(e.target.files[0]);
   };
 
