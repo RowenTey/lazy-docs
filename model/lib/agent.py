@@ -43,6 +43,11 @@ class OpenAIAgent():
             f"Summarise this research paper title {self.title}:\n{self.full_summarised_content}", max_tokens=max_tokens)
         return self.summary
 
+    def get_title(self):
+        self.title = self.respond_to(
+            f"Give an appropriate title for the given paragraph:\n{self.summary}")
+        return self.title
+
     def key_insights(self):
         for section, content in self.sections.items():
             page_insights = self.respond(
