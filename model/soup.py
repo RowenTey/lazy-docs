@@ -81,7 +81,7 @@ def get_ppt_from_url(url):
     summary = respond(
         f"Summarise these text into 3 sentences: {full_content}")
     
-    with open('../data/summary.txt', "wb") as f:
+    with open('../data/summary.txt', "w") as f:
         f.write(summary)
 
     # generate ppt

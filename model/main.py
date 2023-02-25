@@ -4,6 +4,7 @@ from model.lib.read_file import read_file
 from model.lib.preprocess import section_detection
 from model.lib.generate_ppt import generate_ppt
 from model.lib.postprocess import clean_2d_array, clean_ppt_content
+import os
 
 openai.api_key = "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"
 
@@ -17,13 +18,14 @@ def respond(prompt, max_tokens=2048):
 def get_ppt_from_upload(filename):
     # read the file
     content = read_file(filename)
+    
+    print()
+    print("-" * 80)
 
     # preprocess the content
     print("\nProcessing...")
     processed_content = section_detection(content)
 
-    print()
-    print("-" * 80)
 
     # print("\nProcessed!")
     # print(processed_content)
@@ -41,7 +43,7 @@ def get_ppt_from_upload(filename):
     # print("\nSummarised!")
     # print(summarised_content)
     
-    print("\Querying GPT-3...")
+    print("\nQuerying GPT-3...")
     gpt_content = []
     for content in summarised_content:
         res = respond(
@@ -51,7 +53,7 @@ def get_ppt_from_upload(filename):
     # print("\nGPTed!")
     # print(gpt_content)
     
-    print("\Cleaning data...")
+    print("\nCleaning data...")
     cleaned_gpt_content = clean_2d_array(gpt_content)
 
     # print("\nCleaned!")
@@ -63,7 +65,7 @@ def get_ppt_from_upload(filename):
 
     # print("\nPPTed!")
     # print(ppt_content)
-
+    print(" === final ppt cleaning === ")
     final_ppt_content = clean_ppt_content(ppt_content)
 
     # print("\nPPTed + Cleaned!")
@@ -75,7 +77,11 @@ def get_ppt_from_upload(filename):
     summary = respond(
         f"Summarise these text into 3 sentences: {full_content}")
 
-    with open('../data/summary.txt', "wb") as f:
+    cwd = os.getcwd()  # Get the current working directory (cwd)
+    files = os.listdir(cwd)  # Get all the files in that directory
+    print("Files in %r: %s" % (cwd, files))
+    
+    with open('../data/summary.txt', "w") as f:
         f.write(summary)
 
     # generate ppt
@@ -85,4 +91,4 @@ def get_ppt_from_upload(filename):
 
 
 if __name__ == "__main__":
-    get_ppt_from_upload()
+    get_ppt_from_upload("../data/upload.pdf")
