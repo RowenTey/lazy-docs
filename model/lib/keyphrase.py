@@ -31,7 +31,7 @@ model_name = "ml6team/keyphrase-extraction-kbir-inspec"
 extractor = KeyphraseExtractionPipeline(model=model_name)
 
 
-def extract_keyphrase(article: str) -> list[str]:
+def extract_keyphrase(article: str) -> 'list[str]':
     return list(extractor(article))
 
 

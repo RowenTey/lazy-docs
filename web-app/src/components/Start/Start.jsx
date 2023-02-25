@@ -26,7 +26,6 @@ const Start = () => {
             >
               <option value="0">PDF File</option>
               <option value="1">Webpage Link</option>
-              <option value="2">Loading</option>
             </select>
           </div>
           {format == 0 && <PDFUploader />}
