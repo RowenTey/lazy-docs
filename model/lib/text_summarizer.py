@@ -7,7 +7,7 @@ from summarizer import Summarizer
 summariser = Summarizer()
 
 
-def summarise(article: str, num_sentences=None, *args, **kwargs) -> list[str]:
+def summarise(article: str, num_sentences=None, *args, **kwargs) -> 'list[str]':
     if num_sentences is None:
         num_sentences = min(article.count('\n'), 10)
     summary = summariser(article, num_sentences=num_sentences, *args, **kwargs)
