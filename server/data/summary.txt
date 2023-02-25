@@ -1,0 +1,2 @@
+
+This project aims to investigate techniques to implement interactive input and output for online programming platforms, providing users with transparent test cases and an improved system to accept inputs. The demand for programming courses has increased and to effectively learn programming more hands-on experience is required. The project explores ways to improve the system used by web-based systems like APAS to write and run code, which will offer transparent test cases, and make inputting acceptable characters easier.

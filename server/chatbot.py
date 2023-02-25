@@ -26,7 +26,7 @@ def ask():
     if question is None:
         return "Question is missing", 400
     
-    doc_dir = "./data/user1/example.txt"
+    doc_dir = "../data/summary.txt"
 
     docs = []
     

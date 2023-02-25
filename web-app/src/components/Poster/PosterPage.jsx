@@ -1,14 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Poster from "./Poster";
 import leftSymbol from "../../assets/left-symbol.svg";
 import html2canvas from "html2canvas";
 import { Link } from "react-router-dom";
+import summaryData from "../../../../data/summary.txt";
 
 const PosterPage = () => {
 	const [headline, setHeadline] = useState("Your title here");
-	const [summary, setSummary] = useState(
-		"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-	);
+	const [summary, setSummary] = useState("");
 	const [backgroundColor, setBackgroundcolor] = useState("#3b5aa7");
 	const [textColor, setTextColor] = useState("#ffffff");
 	const [file, setFile] = useState(null);
@@ -33,6 +32,22 @@ const PosterPage = () => {
 		link.click();
 	};
 
+	const readFromTxtFile = async () => {
+		fetch(summaryData)
+			.then(response => response.text())
+			.then(data => {
+				console.log(data); // The contents of the file will be logged to the console
+				setSummary(data.substring(0, 600));
+			})
+			.catch(error => {
+				console.error("Error:", error);
+			});
+	};
+
+	useEffect(() => {
+		readFromTxtFile();
+	}, []);
+
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center relative">
 			<Link
@@ -44,7 +59,7 @@ const PosterPage = () => {
 			<div className="flex flex-col items-center py-[1rem] h-[90%] px-[1rem] rounded-lg text-start bg-[#0F172A] w-[1240px]">
 				<h1 className="font-bold text-4xl mb-6 text-white">Poster Generator</h1>
 				<div className="flex flex-row justify-between">
-					<div>
+					<div className="py-2">
 						<Poster
 							backgroundColor={backgroundColor}
 							headline={headline}
@@ -76,7 +91,7 @@ const PosterPage = () => {
 							<textarea
 								className="bg-[#1e2e54] rounded-md py-2 px-3 text-white mb-2"
 								cols="40"
-								rows="10"
+								rows="6"
 								maxLength="600"
 								onChange={e => setSummary(e.target.value)}
 								value={summary}

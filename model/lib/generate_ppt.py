@@ -3,7 +3,8 @@ import pptx
 from pptx.util import Pt, Inches
 
 
-def generate_ppt(content, ppt_title, filename):
+def generate_ppt(content, ppt_title="Research Paper Summary", filename="research_summary.ppt"):
+    # TODO: change directory
     directory = os.path.join(os.getcwd(), '..', 'output')
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -16,10 +17,10 @@ def generate_ppt(content, ppt_title, filename):
     slide = ppt.slides.add_slide(ppt.slide_layouts[1])
     title = slide.shapes.title
     title.text = ppt_title
-    title.left = pptx.util.Inches(0.5)  # adjust the left position as necessary
-    title.top = pptx.util.Inches(3)
-    title.width = pptx.util.Inches(9)
-    title.height = pptx.util.Inches(1)
+    title.left = Inches(0.5)  # adjust the left position as necessary
+    title.top = Inches(3)
+    title.width = Inches(9)
+    title.height = Inches(1)
     title.horz_cent = True
     title.vert_cent = True
 
