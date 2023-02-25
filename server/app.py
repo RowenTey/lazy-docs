@@ -2,10 +2,11 @@ from flask import Flask
 import prediction
 import chatbot
 import os
+from flask_cors import CORS, cross_origin
 
 def create_app(test_config = None):
     app = Flask(__name__, instance_relative_config=True)
-    
+    cors = CORS(app)
     if test_config is None:
         pass
     else:
