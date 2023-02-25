@@ -12,9 +12,7 @@ def read_file(filename):
     for page_num in range(pdf_reader.getNumPages()):
         page = pdf_reader.getPage(page_num)
         text += page.extractText()
-        if page_num == 0:
-            title = text.split('\n')[0]
-    return [title, text]
+    return text
 
 
 if __name__ == '__main__':
