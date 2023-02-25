@@ -7,9 +7,42 @@ import { Link } from "react-router-dom";
 const Start = () => {
   // 0: pdf, 1: web
   const [format, setFormat] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const selectHandler = (e) => {
     setFormat((pre) => e.target.value);
   };
+  
+  const handleNext = async e => {
+		e.preventDefault();
+    setIsLoading(true);
+    
+		const BASE_URL = "http://127.0.0.1:5000/prediction/predict";
+    const req = {
+      "file_path": "../data/upload.pdf",
+      "from_upload": format == 0 ? true : false,
+      "url": 
+    }
+
+		try {
+			const response = await axios.post(BASE_URL, formData, {
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+			console.log(response);
+      
+			setIsLoading(false);
+			// alert("Upload successful!");
+		} catch (error) {
+			setIsLoading(false);
+			alert(`Error uploading file: ${error.message}`);
+		}
+	};
+  
+  if (isLoading) {
+    return <LoadingPage />
+  }
 
   return (
     <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
@@ -33,6 +66,7 @@ const Start = () => {
           <Link to="/summary">
             <button
               type="button"
+              onSubmit={handleNext}
               class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-md px-10 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Next
