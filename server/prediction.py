@@ -2,6 +2,7 @@ from tkinter import N
 from urllib import request
 from flask import Blueprint
 from flask import request
+from model.lib.agent import OpenAIAgent
 
 
 bp = Blueprint("prediction", __name__, url_prefix="/prediction")
@@ -9,19 +10,14 @@ bp = Blueprint("prediction", __name__, url_prefix="/prediction")
 
 @bp.route("/predict")
 def predict():
-    sepal_length = request.args.get("sepallength")
-    sepal_width = request.args.get("sepalwidth")
-    petal_length = request.args.get("petallength")
-    petal_width = request.args.get("petalwidth")
+    filename = request.args.get("filename")
+    from_upload = request.args.get("fromUpload")
 
-    if sepal_length is None:
-        return "Sepal length data is missing", 400
-    # if sepal_width is None:
-    #     return "Sepal width data is missing", 400
-    # if petal_length is None:
-    #     return "Petal length data is missing", 400
-    # if petal_width is None:
-    #     return "Petal width data is missing", 400
+    if from_upload:
+        agent = OpenAIAgent(filename="test1.pdf")
+        agent.get_content()
+        agent.get_page_by_page_summary()
+        print(agent.get_overall_summary())
 
     # x = np.array([sepal_length, sepal_width, petal_length, petal_width], ndmin=2)
 
@@ -30,4 +26,4 @@ def predict():
     # if prediction is None:
     #     return "Something went wrong", 400
 
-    return {"species": "test"}
+    return {"status": "success"}
