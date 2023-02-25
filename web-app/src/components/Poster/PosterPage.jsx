@@ -2,12 +2,13 @@ import React, { useRef, useState } from "react";
 import Poster from "./Poster";
 import leftSymbol from "../../assets/left-symbol.svg";
 import html2canvas from "html2canvas";
+import summaryData from "../../../../data/summary.txt";
 import { Link } from "react-router-dom";
 
 const PosterPage = () => {
 	const [headline, setHeadline] = useState("Your title here");
 	const [summary, setSummary] = useState(
-		"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+		""
 	);
 	const [backgroundColor, setBackgroundcolor] = useState("#3b5aa7");
 	const [textColor, setTextColor] = useState("#ffffff");
@@ -32,6 +33,22 @@ const PosterPage = () => {
 		document.body.appendChild(link);
 		link.click();
 	};
+
+	const readFromTxtFile = async () => {
+    fetch(summaryData)
+      .then(response => response.text())
+      .then(data => {
+        console.log(data); // The contents of the file will be logged to the console
+        setSummary(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+  
+	useEffect(() => {
+		readFromTxtFile();
+	}, [])
 
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center relative">

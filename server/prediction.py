@@ -1,13 +1,14 @@
-from tkinter import N
-from urllib import request
-from flask import Blueprint
-from flask import request
-from model.main import get_ppt_from_upload
-from flask_cors import cross_origin, CORS
 import os
 import sys
 sys.path.insert(0, os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..')))
+from flask_cors import cross_origin, CORS
+from model.main import get_ppt_from_upload
+from model.soup import get_ppt_from_url
+from flask import request
+from flask import Blueprint
+
+
 
 bp = Blueprint("prediction", __name__, url_prefix="/prediction")
 
@@ -32,13 +33,19 @@ def upload():
 def predict():
     file_path = None
     try:
+        from_upload = request.get_json()
+        url = request.get_json()
         file_path = request.get_json()
+        print(from_upload, url, file_path)
+        if (url and from_upload == 1):
+            res = get_ppt_from_url(url)
+        else:
+            res = get_ppt_from_upload(file_path["file_path"])
     except:
         return "Error in body", 400
 
     if not file_path:
-        return "Something went wrong", 400
+        return "Something went wrong", 404
 
-    summary = get_ppt_from_upload(file_path)
 
-    return {"status": "success", "payload": summary}
+    return {"status": "success"}

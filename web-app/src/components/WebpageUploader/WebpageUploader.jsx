@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const WebpageUploader = () => {
-	const [url, setUrl] = useState(null);
-
+const WebpageUploader = ({url, setUrl}) => {
 	const uploadHandler = (e) => {
 		setUrl(e.target[0].value);
 		console.log(e.target[0].value);
@@ -21,6 +19,8 @@ const WebpageUploader = () => {
 						placeholder="https://example.com"
 						pattern="https://.*"
 						required
+						value={url}
+						onChange={e => setUrl(e.target.value)}
 						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-3/6 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					></input>
 					<button

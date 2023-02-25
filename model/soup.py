@@ -1,18 +1,22 @@
 import requests
 import openai
 from bs4 import BeautifulSoup
-from lib.keyphrase import extract_keyphrase
-from lib.text_summarizer import summarise
-from lib.preprocess import section_detection
-from lib.generate_ppt import generate_ppt
-from lib.postprocess import clean_2d_array, clean_ppt_content
+from model.lib.keyphrase import extract_keyphrase
+from model.lib.text_summarizer import summarise
+from model.lib.preprocess import section_detection
+from model.lib.generate_ppt import generate_ppt
+from model.lib.postprocess import clean_2d_array, clean_ppt_content
 
 openai.api_key = "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"
 
+def respond(prompt, max_tokens=2048):
+    completion = openai.Completion.create(
+        engine="text-davinci-003", prompt=prompt, max_tokens=max_tokens)
+    return completion.choices[0]['text']
 
 def get_ppt_from_url(url):
     # Define the URL of the website to summarize
-    url = "https://doi.org/10.7554/eLife.80379"
+    # url = "https://doi.org/10.7554/eLife.80379"
 
     # Retrieve the HTML content of the website
     response = requests.get(url)
@@ -32,6 +36,7 @@ def get_ppt_from_url(url):
 
     print()
     print("-" * 80)
+    
     # get summary information
     summarised_content = []
     for key, value in processed_content.items():
@@ -75,11 +80,14 @@ def get_ppt_from_url(url):
         f"Give an appropriate title based on this text: {full_content}")
     summary = respond(
         f"Summarise these text into 3 sentences: {full_content}")
+    
+    with open('../data/summary.txt', "wb") as f:
+        f.write(summary)
 
     # generate ppt
     generate_ppt(final_ppt_content, title, "research.ppt")
 
-    return summary
+    return None
 
 
 if __name__ == "__main__":

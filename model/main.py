@@ -19,6 +19,7 @@ def get_ppt_from_upload(filename):
     content = read_file(filename)
 
     # preprocess the content
+    print("\nProcessing...")
     processed_content = section_detection(content)
 
     print()
@@ -28,6 +29,7 @@ def get_ppt_from_upload(filename):
     # print(processed_content)
 
     # get summary information
+    print("\nSummarising...")
     summarised_content = []
     for key, value in processed_content.items():
         if len(value) < 10:
@@ -38,7 +40,8 @@ def get_ppt_from_upload(filename):
 
     # print("\nSummarised!")
     # print(summarised_content)
-
+    
+    print("\Querying GPT-3...")
     gpt_content = []
     for content in summarised_content:
         res = respond(
@@ -47,7 +50,8 @@ def get_ppt_from_upload(filename):
 
     # print("\nGPTed!")
     # print(gpt_content)
-
+    
+    print("\Cleaning data...")
     cleaned_gpt_content = clean_2d_array(gpt_content)
 
     # print("\nCleaned!")
@@ -71,10 +75,13 @@ def get_ppt_from_upload(filename):
     summary = respond(
         f"Summarise these text into 3 sentences: {full_content}")
 
+    with open('../data/summary.txt', "wb") as f:
+        f.write(summary)
+
     # generate ppt
     generate_ppt(final_ppt_content, title, "research.ppt")
 
-    return summary
+    return None
 
 
 if __name__ == "__main__":
