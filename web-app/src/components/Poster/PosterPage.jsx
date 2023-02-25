@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import Poster from "./Poster";
+import leftSymbol from "../../assets/left-symbol.svg";
 import html2canvas from "html2canvas";
+import { Link } from "react-router-dom";
 
 const PosterPage = () => {
 	const [headline, setHeadline] = useState("Your title here");
@@ -33,6 +35,12 @@ const PosterPage = () => {
 
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center relative">
+			<Link
+				to="/summary"
+				className="absolute left-8 bg-[#0F172A] rounded-full w-[45px] p-1"
+			>
+				<img src={leftSymbol} />
+			</Link>
 			<div className="flex flex-col items-center py-[1rem] h-[90%] px-[1rem] rounded-lg text-start bg-[#0F172A] w-[1240px]">
 				<h1 className="font-bold text-4xl mb-6 text-white">Poster Generator</h1>
 				<div className="flex flex-row justify-between">
@@ -69,7 +77,7 @@ const PosterPage = () => {
 								className="bg-[#1e2e54] rounded-md py-2 px-3 text-white mb-2"
 								cols="40"
 								rows="10"
-								maxLength="300"
+								maxLength="600"
 								onChange={e => setSummary(e.target.value)}
 								value={summary}
 							/>

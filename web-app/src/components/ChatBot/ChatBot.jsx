@@ -3,6 +3,7 @@ import ChatBox from "./ChatBox";
 import chatbotPfp from "../../assets/chatbot-pfp.png";
 import userPfp from "../../assets/user-pfp.png";
 import leftSymbol from "../../assets/left-symbol.svg";
+import { Link } from "react-router-dom";
 
 const ChatBot = () => {
 	const [messages, setMessages] = useState([]);
@@ -14,9 +15,12 @@ const ChatBot = () => {
 	});
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center relative">
-			<button className="absolute left-8 bg-[#0F172A] rounded-full w-[45px] p-1">
+			<Link
+				to="/summary"
+				className="absolute left-8 bg-[#0F172A] rounded-full w-[45px] p-1"
+			>
 				<img src={leftSymbol} />
-			</button>
+			</Link>
 			<div className="flex flex-col items-center py-[1rem] h-[90%] px-[1rem] rounded-lg text-start justify-end bg-[#0F172A]">
 				<h1 className="font-bold text-4xl  text-white mb-4">Chatbot</h1>
 				<div className="flex flex-col items-center py-[1rem] h-full px-[1rem] rounded-lg text-start justify-end bg-[#1b294b]">

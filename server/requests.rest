@@ -4,3 +4,19 @@ Content-Type: application/json
 {
     "question": "What is this paper"
 }
+
+###
+POST http://127.0.0.1:5000/prediction/upload
+Content-Type: multipart/form-data
+
+# {
+#     "question": "What is this paper"
+# }
+
+###
+POST http://127.0.0.1:5000/prediction/predict
+Content-Type: application/json
+
+{
+    "file_path": "./data/upload"
+}
