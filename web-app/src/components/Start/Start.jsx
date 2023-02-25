@@ -1,5 +1,3 @@
-import "./Start.css";
-
 const Start = () => {
   return (
     <div className="start-box">

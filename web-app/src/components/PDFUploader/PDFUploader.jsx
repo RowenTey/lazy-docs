@@ -1,12 +1,10 @@
-import "./PDFUploader.css";
 import axios from "axios";
 import React, { useState } from "react";
 const PDFUploader = () => {
   const [file, setFile] = useState(null);
 
   const handleFileInputChange = (e) => {
-    console.log(e);
-    // setFile(e.target.files[0]);
+    setFile(e.target.files[0]);
   };
 
   const handleFormSubmit = async (e) => {
