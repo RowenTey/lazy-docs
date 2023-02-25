@@ -4,7 +4,7 @@ from pptx.util import Pt, Inches
 
 
 def generate_ppt(content, ppt_title, filename):
-    directory = 'output'
+    directory = os.path.join(os.getcwd(), '..', 'output')
     if not os.path.exists(directory):
         os.makedirs(directory)
     filepath = os.path.join(directory, filename)

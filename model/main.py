@@ -3,8 +3,9 @@ from lib.text_summarizer import summarise
 from lib.read_file import read_file
 from lib.preprocess import section_detection
 from lib.generate_ppt import generate_ppt
+from lib.agent import OpenAIAgent
 
-# read the file
+""" # read the file
 content = read_file("research_paper.pdf")
 
 # preprocess the content
@@ -22,4 +23,9 @@ for key, value in processed_content.items():
     summarised_content.append(summarised)
 
 # generate ppt
-generate_ppt(summarised_content, content[0], "research.ppt")
+generate_ppt(summarised_content, content[0], "research.ppt") """
+
+agent = OpenAIAgent(filename="research_paper.pdf")
+agent.get_content()
+agent.get_page_by_page_summary()
+print(agent.get_overall_summary())
