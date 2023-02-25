@@ -10,7 +10,7 @@ def process_paper(text):
     text = re.sub(r'[^\w\s\-\:\.\']', '', text)
     text = re.sub(r'[\n\r\t]+', ' ', text)
     text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r"-\s", "", text)
+    # text = re.sub(r"-\s", "", text)
 
     body = text
 
@@ -93,7 +93,7 @@ def section_detection(text):
 
 if __name__ == '__main__':
     from read_file import read_file
-    text = read_file("../research_paper.pdf")[1]
+    text = read_file("../test1.pdf")[1]
     res = section_detection(text)
 
     for key, val in res.items():

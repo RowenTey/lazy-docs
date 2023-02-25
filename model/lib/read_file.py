@@ -18,5 +18,5 @@ def read_file(filename):
 
 
 if __name__ == '__main__':
-    res = read_file("../research_paper.pdf")
+    res = read_file("../test1.pdf")
     print(res[1])

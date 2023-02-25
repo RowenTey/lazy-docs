@@ -6,7 +6,7 @@ from lib.generate_ppt import generate_ppt
 from lib.agent import OpenAIAgent
 
 # read the file
-content = read_file("research_paper.pdf")
+content = read_file("test1.pdf")
 
 # preprocess the content
 processed_content = section_detection(content[1])
