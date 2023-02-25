@@ -8,25 +8,18 @@ from lib.generate_ppt import generate_ppt
 content = read_file("research_paper.pdf")
 
 # preprocess the content
-processed_content = section_detection(content)
+processed_content = section_detection(content[1])
 
 print()
-print("-" * 60)
+print("-" * 80)
+print("Research paper title: " + content[0] + '\n')
 
 # get summary information
 summarised_content = []
 for key, value in processed_content.items():
-    output = summarise(value, num_sentences=10)
+    output = summarise(value, num_sentences=5)
     summarised = "\n".join(output)
-    # print("key: " + key)
-    # print("summarised: ", summarised)
-    # print()
     summarised_content.append(summarised)
 
-# print("key: " + key)
-# print("summarised: ", summarised)
-# print()
-# summarised_content.append(summarised)
-
 # generate ppt
-generate_ppt(summarised_content, "research.ppt")
+generate_ppt(summarised_content, content[0], "research.ppt")

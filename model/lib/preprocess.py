@@ -9,16 +9,11 @@ def process_paper(text):
     text = re.sub(r'(?<=[a-zA-Z])-(?=[a-zA-Z])', '', text)
     text = (text.encode('ascii', 'ignore')).decode("utf-8")
 
-    # Extracting the highlights, body from the paper
-    body_main = text
-
     # Making a copy of the body, removing punctuations & extra spaces
-    body_copy = body_main
-    body_copy = re.sub('[^\w\s\d\.]', '', body_copy)
-    body_copy = ' '.join(body_copy.split())
-    # body_copy = body_copy.split(".")
+    body = text
+    # body = re.sub('[^\w\s\d\.]', '', body)
 
-    return body_copy
+    return body
 
 
 def section_detection(text):
@@ -45,6 +40,7 @@ def section_detection(text):
         except IndexError:
             dic[title_list[i]] = cleaned_text[all[1][i]:]
 
+    # remove references & acknowledgements
     if 'Acknowledgments' in dic:
         del dic['Acknowledgments']
 
@@ -56,10 +52,7 @@ def section_detection(text):
 
 if __name__ == '__main__':
     from read_file import read_file
-    text = read_file("../research_paper.pdf")
-
-    # tmp = ' '.join(process_paper(text)[1])
-    # print(tmp)
+    text = read_file("../research_paper.pdf")[1]
     res = section_detection(text)
 
     for key, val in res.items():

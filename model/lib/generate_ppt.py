@@ -1,9 +1,9 @@
 import os
 import pptx
-from pptx.util import Pt
+from pptx.util import Pt, Inches
 
 
-def generate_ppt(content, filename):
+def generate_ppt(content, ppt_title, filename):
     directory = 'output'
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -11,6 +11,24 @@ def generate_ppt(content, filename):
 
     # Create a PowerPoint presentation with the key insights and findings
     ppt = pptx.Presentation()
+
+    # add title page
+    slide = ppt.slides.add_slide(ppt.slide_layouts[1])
+    title = slide.shapes.title
+    title.text = ppt_title
+    title.left = pptx.util.Inches(0.5)  # adjust the left position as necessary
+    title.top = pptx.util.Inches(3)
+    title.width = pptx.util.Inches(9)
+    title.height = pptx.util.Inches(1)
+    title.horz_cent = True
+    title.vert_cent = True
+
+    # remove body placeholder for title page
+    body_shape = slide.placeholders[1]
+    body_shape.text = ""
+    body_shape.element.clear()
+
+    # add insights
     for i in range(len(content)):
         slide = ppt.slides.add_slide(ppt.slide_layouts[1])
 
@@ -22,7 +40,7 @@ def generate_ppt(content, filename):
 
         # Set the font size of the body text to 16
         for para in body.text_frame.paragraphs:
-            para.font.size = Pt(16)
+            para.font.size = Pt(17)
     ppt.save(filepath)
 
 
