@@ -29,7 +29,7 @@ const PDFUploader = () => {
   return (
     <div className="pdf-box">
       <form onSubmit={handleFormSubmit}>
-        <h1>Upload your PDF file</h1>
+        <h1>Upload your PDF File</h1>
         <div className="upload-box">
           <input type="file" onChange={handleFileInputChange} />
           <button type="submit">Upload</button>
