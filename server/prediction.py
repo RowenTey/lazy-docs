@@ -3,7 +3,7 @@ from urllib import request
 from flask import Blueprint
 from flask import request
 
-import joblib
+# import joblib
 
 bp = Blueprint("prediction", __name__, url_prefix="/prediction")
 

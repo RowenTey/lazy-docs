@@ -2,11 +2,13 @@
 ```
 python -m venv ./venv
 ```
+Python 3.9+
 
 ## Install dependencies
 ```
 pip install -r requirements.txt
 ```
+
 
 ## Run server
 ```
