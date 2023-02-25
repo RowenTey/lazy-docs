@@ -1,18 +1,22 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-import WebpageUploader from "./components/WebpageUploader/WebpageUploader";
-import PDFUploader from "./components/PDFUploader/PDFUploader";
 import Start from "./components/Start/Start";
 import Summary from "./components/Summary/Summary";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
+import ChatBot from "./components/ChatBot/ChatBot";
+
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
-      {/* <Start /> */}
-      <Summary />
-      {/* <LoadingPage /> */}
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Start />}></Route>
+        <Route exact path="/loading" element={<LoadingPage />}></Route>
+        <Route exact path="/summary" element={<Summary />}></Route>
+        <Route exact path="/chatbot" element={<ChatBot />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
