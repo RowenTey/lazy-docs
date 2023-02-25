@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Summary = () => {
-	let url = "";
 	const [summary, setSummary] = useState(
 		"Donec libero ante, sagittis eu sollicitudin id, condimentum ut magna.Cras porta ac eros sed auctor. Suspendisse vitae nunc interdum,tincidunt massa non, tincidunt mi. Curabitur quis nibh tellus. Donecvitae nunc at tellus vehicula pellentesque ac eu tortor. Curabitur idipsum id arcu egestas pellentesque at eu magna. Sed volutpat malesuadaelit, quis consequat tortor efficitur eget. Nunc eget gravida erat,nec congue nisi. Curabitur id ipsum id arcu egestas pellentesque at eumagna. Sed volutpat malesuada elit, quis consequat tortor efficitureget. Nunc eget gravida erat, nec congue nisi. Curabitur id ipsum idarcu egestas pellentesque at eu magna. Sed volutpat malesuada elit,quis consequat tortor efficitur eget. Nunc eget gravida erat, neccongue nisi.Sed volutpat malesuada elit, quis consequat tortorefficitur eget. Nunc eget gravida erat, nec congue nisi. Curabitur idipsum id arcu egestas pellentesque at eu magna. Sed volutpat malesuadaelit, quis consequat tortor efficitur eget. Nunc eget gravida erat,nec congue nisi. Curabitur id ipsum id arcu egestas pellentesque at eumagna. Sed volutpat malesuada elit, quis consequat tortor efficitureget. Nunc eget gravida erat, nec congue nisi."
 	);
+	const location = useLocation()
+  const { from } = location.state
+	let url = "";
 
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center">

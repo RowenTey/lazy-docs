@@ -45,3 +45,4 @@ typing-extensions==4.5.0
 urllib3==1.26.14
 wasabi==1.1.1
 XlsxWriter==3.0.8
+farm_haystack==1.13.2
