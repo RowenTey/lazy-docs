@@ -8,7 +8,7 @@ import Summary from "./components/Summary/Summary";
 function App() {
   return (
     <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
-      <Start />
+      <Summary />
     </div>
   );
 }
