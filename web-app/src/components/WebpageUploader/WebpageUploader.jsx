@@ -8,18 +8,23 @@ const WebpageUploader = () => {
     e.preventDefault();
   };
   return (
-    <div className="flex flex-col text-xl gap-3 font-extrabold bg-black text-white ">
-      <h1>Upload your Link</h1>
-      <div className="flex flex-row gap-2">
-        <form on onSubmit={uploadHandler}>
+    <div className="flex flex-col gap-3 text-white p-3 px-5">
+      <h1 className="text-3xl font-extrabold m-3">Step 1: Upload your Link</h1>
+      <div className="flex flex-row gap-2 mx-4 mb-4">
+        <form onSubmit={uploadHandler}>
           <input
             type="url"
             placeholder="https://example.com"
             pattern="https://.*"
             required
-            className="rounded-lg p-2"
+            className="rounded-lg p-2 text-black"
           ></input>
-          <button type="submit">Upload</button>
+          <button
+            className="bg-white text-black p-2 rounded ml-8"
+            type="submit"
+          >
+            Upload
+          </button>
         </form>
       </div>
     </div>

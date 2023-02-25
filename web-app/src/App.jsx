@@ -6,7 +6,7 @@ import Start from "./components/Start/Start";
 
 function App() {
   return (
-    <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
+    <div className="bg-slate-500 w-screen h-screen flex justify-center items-center ">
       <Start />
     </div>
   );
