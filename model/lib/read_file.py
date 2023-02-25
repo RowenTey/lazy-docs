@@ -1,6 +1,5 @@
 import PyPDF2
 
-
 def read_file(filename):
     """ Open the PDF file and read its contents
 

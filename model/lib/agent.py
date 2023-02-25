@@ -1,7 +1,7 @@
 import openai
-from lib.read_file import read_file
-from lib.preprocess import section_detection
-from lib.generate_ppt import generate_ppt
+from model.lib.read_file import read_file
+from model.lib.preprocess import section_detection
+from model.lib.generate_ppt import generate_ppt
 
 openai.api_key = "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"
 
