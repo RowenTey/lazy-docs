@@ -14,7 +14,8 @@
 ├── web-app            # React app
 ├── igitignore
 ├── LICENSE
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ## ❓ How It Works
