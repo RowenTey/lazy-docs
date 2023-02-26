@@ -3,7 +3,7 @@ from model.lib.text_summarizer import summarise
 from model.lib.read_file import read_file
 from model.lib.preprocess import section_detection
 from model.lib.generate_ppt import generate_ppt
-from model.lib.postprocess import clean_2d_array, clean_ppt_content
+from model.lib.postprocess import clean_array_dict, clean_ppt_content
 import os
 
 openai.api_key = "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"
@@ -32,36 +32,36 @@ def get_ppt_from_upload(filename):
 
     # get summary information
     print("\nSummarising...")
-    summarised_content = []
-    for key, value in processed_content.items():
-        if len(value) < 10:
+    summarised_content = {}
+    for section, content in processed_content.items():
+        if len(content) < 10:
             continue
-        output = summarise(value, num_sentences=5)
+        output = summarise(content, num_sentences=5)
         summarised = "\n".join(output)
-        summarised_content.append(summarised)
+        summarised_content[section] = summarised
 
     # print("\nSummarised!")
     # print(summarised_content)
     
     print("\nQuerying GPT-3...")
-    gpt_content = []
-    for content in summarised_content:
+    gpt_content = {}
+    for section, content in summarised_content.items():
         res = respond(
             f"Rewrite this to be more concise yet make more sense:\n{content}")
-        gpt_content.append(res.split("."))
+        gpt_content[section] = res.split(".")
 
     # print("\nGPTed!")
     # print(gpt_content)
     
     print("\nCleaning data...")
-    cleaned_gpt_content = clean_2d_array(gpt_content)
+    cleaned_gpt_content = clean_array_dict(gpt_content)
 
     # print("\nCleaned!")
     # print(cleaned_gpt_content)
 
-    ppt_content = []
-    for row in cleaned_gpt_content:
-        ppt_content.append('\n'.join(row))
+    ppt_content = {}
+    for section, row in cleaned_gpt_content.items():
+        ppt_content[section] = '\n'.join(row)
 
     # print("\nPPTed!")
     # print(ppt_content)
@@ -71,7 +71,7 @@ def get_ppt_from_upload(filename):
     # print("\nPPTed + Cleaned!")
     # print(ppt_content)
 
-    full_content = '\n'.join(final_ppt_content)
+    full_content = '\n'.join(list(final_ppt_content.values()))
     title = respond(
         f"Give an appropriate title based on this text: {full_content}")
     summary = respond(

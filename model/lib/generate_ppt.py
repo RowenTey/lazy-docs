@@ -30,14 +30,14 @@ def generate_ppt(content, ppt_title="Research Paper Summary", filename="research
     body_shape.element.clear()
 
     # add insights
-    for i in range(len(content)):
+    for section, insights in content.items():
         slide = ppt.slides.add_slide(ppt.slide_layouts[1])
 
         title = slide.shapes.title
-        title.text = f"Key Insight {i+1}"
+        title.text = section
 
         body = slide.placeholders[1]
-        body.text = content[i]
+        body.text = insights
 
         # Set the font size of the body text to 16
         for para in body.text_frame.paragraphs:

@@ -1,12 +1,12 @@
 import re
 
 
-def clean_2d_array(arr):
+def clean_array_dict(dict):
     # create a new array to store the cleaned data
-    cleaned_arr = []
+    cleaned_dict = {}
 
     # iterate over each row in the original array
-    for row in arr:
+    for section, row in dict.items():
         cleaned_row = []
 
         # iterate over each element in the row
@@ -20,24 +20,24 @@ def clean_2d_array(arr):
         cleaned_row.pop()
 
         # add the cleaned row to the cleaned array
-        cleaned_arr.append(cleaned_row)
+        cleaned_dict[section] = cleaned_row
     print("=== Finished cleaning === ")
-    return cleaned_arr
+    return cleaned_dict
 
 
-def clean_ppt_content(arr):
+def clean_ppt_content(dict):
     # create a new array to store the cleaned data
-    cleaned_arr = []
+    cleaned_dict = {}
 
     # iterate over each row in the original array
-    for elem in arr:
+    for section, content in dict.items():
         cleaned_elem = re.sub(
-            r'(?<=[a-z0-9])\n(?=[a-z0-9])', '.', elem)
+            r'(?<=[a-z0-9])\n(?=[a-z0-9])', '.', content)
 
         # add the cleaned row to the cleaned array
-        cleaned_arr.append(cleaned_elem)
+        cleaned_dict[section] = cleaned_elem
 
-    return cleaned_arr
+    return cleaned_dict
 
 
 if __name__ == '__main__':
