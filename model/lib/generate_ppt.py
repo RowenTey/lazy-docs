@@ -12,6 +12,12 @@ def generate_ppt(content, ppt_title="Research Paper Summary", filename="research
     # Create a PowerPoint presentation with the key insights and findings
     ppt = pptx.Presentation()
 
+    # Set the background image of the presentation
+    background_image = '../output/title_image.jpg'
+    background_picture = pptx.slide_master.background_pictures.add_picture(background_image)
+    background_picture.width = pptx.slide_width
+    background_picture.height = pptx.slide_height
+
     # add title page
     slide = ppt.slides.add_slide(ppt.slide_layouts[1])
     title = slide.shapes.title
