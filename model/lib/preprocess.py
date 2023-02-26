@@ -54,7 +54,8 @@ def check_dic(dic):
 
 def section_detection(text):
     headings = ["Abstract", "Introduction", "Background", "Analysis", "Discussion",
-                "Conclusion", "References", "Acknowledgments", "Future Work", "Outcome", "Result"]
+                "Conclusion", "References", "Acknowledgments", "Future Work", "Outcome", "Result",
+                "Findings", "Appendices", "Literature Review", "Methods"]
     cleaned_text = process_paper(text)
     title_list = []
     all = [[], []]

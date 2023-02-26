@@ -31,13 +31,15 @@ def get_ppt_from_url(url):
     # Extract all the text content of the website
     text = " ".join([p.text for p in soup.find_all("p")])
 
-    # preprocess the content
-    processed_content = section_detection(text)
-
     print()
     print("-" * 80)
+
+    # preprocess the content
+    print("\nProcessing...")
+    processed_content = section_detection(text)
     
     # get summary information
+    print("\nSummarising...")
     summarised_content = []
     for key, value in processed_content.items():
         if len(value) < 10:
@@ -50,6 +52,7 @@ def get_ppt_from_url(url):
     # print(summarised_content)
 
     gpt_content = []
+    print("\nQuerying GPT-3...")
     for content in summarised_content:
         res = respond(
             f"Rewrite this to be more concise yet make more sense:\n{content}")
@@ -57,7 +60,8 @@ def get_ppt_from_url(url):
 
     # print("\nGPTed!")
     # print(gpt_content)
-
+    
+    print("\nCleaning data...")
     cleaned_gpt_content = clean_2d_array(gpt_content)
 
     # print("\nCleaned!")
@@ -69,7 +73,8 @@ def get_ppt_from_url(url):
 
     # print("\nPPTed!")
     # print(ppt_content)
-
+    
+    print("\nFinal cleaning...")
     final_ppt_content = clean_ppt_content(ppt_content)
 
     # print("\nPPTed + Cleaned!")

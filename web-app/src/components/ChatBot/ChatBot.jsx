@@ -7,12 +7,13 @@ import { Link } from "react-router-dom";
 
 const ChatBot = () => {
 	const [messages, setMessages] = useState([]);
-	const bottomDiv = useRef(null);
 	const [loading, setLoading] = useState(false);
+	const bottomDiv = useRef(null);
 
 	useEffect(() => {
 		bottomDiv.current?.scrollIntoView();
 	});
+	
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center relative">
 			<Link

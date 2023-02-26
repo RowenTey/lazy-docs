@@ -65,7 +65,7 @@ def get_ppt_from_upload(filename):
 
     # print("\nPPTed!")
     # print(ppt_content)
-    print(" === final ppt cleaning === ")
+    print("\nFinal cleaning...")
     final_ppt_content = clean_ppt_content(ppt_content)
 
     # print("\nPPTed + Cleaned!")

@@ -12,7 +12,6 @@
 .
 ├── data        
 ├── model              # NLP models
-├── output             
 ├── server             # Flask app
 ├── web-app            # React app
 ├── igitignore
@@ -36,12 +35,9 @@
 - [@Eldrick7](https://github.com/Eldrick7)
 
 
-<!-- ## 📖 References
+## 📖 References
 
-- React Native: https://reactnative.dev/docs/getting-started
-- Fiber: https://docs.gofiber.io/
-- MySQL: https://dev.mysql.com/doc/
-- Planetscale: https://planetscale.com/docs
-- API Documentation: https://justjio-server-o44bmvzlsa-as.a.run.app/swagger
-- Video Demo: https://www.youtube.com/watch?v=ivcDZ1EqElk
- -->
+- Summarizer: https://pypi.org/project/bert-extractive-summarizer/
+- BlingFire: https://github.com/microsoft/BlingFire
+
+
