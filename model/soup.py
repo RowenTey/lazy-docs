@@ -5,7 +5,7 @@ from model.lib.keyphrase import extract_keyphrase
 from model.lib.text_summarizer import summarise
 from model.lib.preprocess import section_detection
 from model.lib.generate_ppt import generate_ppt
-from model.lib.postprocess import clean_2d_array, clean_ppt_content
+from model.lib.postprocess import clean_array_dict, clean_ppt_content
 
 openai.api_key = "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"
 
@@ -62,7 +62,7 @@ def get_ppt_from_url(url):
     # print(gpt_content)
     
     print("\nCleaning data...")
-    cleaned_gpt_content = clean_2d_array(gpt_content)
+    cleaned_gpt_content = clean_array_dict(gpt_content)
 
     # print("\nCleaned!")
     # print(cleaned_gpt_content)

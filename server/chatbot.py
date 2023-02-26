@@ -9,9 +9,6 @@ import openai
 
 bp = Blueprint("chatbot", __name__, url_prefix="/chatbot")
 
-# with open("ur file", "rb") as f:
-#     classifier = joblib.load(f)
-
 @bp.route("/chat", methods=["POST"])
 @cross_origin()
 def ask():

@@ -19,6 +19,10 @@
 └── README.md
 ```
 
+## ❓ How It Works
+
+![pipeline](./web-app/public/pipeline.png)
+
 ## 🧪 Tech Stack
 <p>
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" >
@@ -27,12 +31,12 @@
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white" >
 </p>
 
-## 🧠 Contributors - Team OneStart 🏆🤟🏼
+## 🧠 Contributors - Team 3Chill1Chiong 🏆🤟🏼
 
 - [@RowenTey](https://github.com/RowenTey)
-- [@czhi-heng](https://github.com/czhi-heng)
-- [@JULU909](https://github.com/JULU909)
-- [@Eldrick7](https://github.com/Eldrick7)
+- [@shaowei0925](https://github.com/shaowei0925)
+- [@limivann](https://github.com/limivann)
+- [@Horstann](https://github.com/Horstann)
 
 
 ## 📖 References

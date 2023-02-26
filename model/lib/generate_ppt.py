@@ -33,7 +33,7 @@ def generate_ppt(content, ppt_title="Research Paper Summary", filename="research
         slide = ppt.slides.add_slide(ppt.slide_layouts[1])
 
         title = slide.shapes.title
-        title.text = section
+        title.text = section.upper()
 
         body = slide.placeholders[1]
         body.text = insights
