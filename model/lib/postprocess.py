@@ -21,7 +21,7 @@ def clean_array_dict(dict):
 
         # add the cleaned row to the cleaned array
         cleaned_dict[section] = cleaned_row
-    print("=== Finished cleaning === ")
+
     return cleaned_dict
 
 

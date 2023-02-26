@@ -15,19 +15,6 @@ def respond(prompt, max_tokens=2048):
         engine="text-davinci-003", prompt=prompt, max_tokens=max_tokens)
     return completion.choices[0]['text']
 
-def load_title_image(title):
-    response = openai.Image.create(
-        prompt=title,
-        n=1,
-        size="1280x720"
-    )
-    image_url = response['data'][0]['url']
-
-    img_data = requests.get(image_url).content
-    with open('../output/title_image.jpg', 'wb') as handler:
-        handler.write(img_data)
-    return None
-
 def get_ppt_from_upload(filename):
     # read the file
     content = read_file(filename)
@@ -89,8 +76,6 @@ def get_ppt_from_upload(filename):
         f"Give an appropriate title based on this text: {full_content}")
     summary = respond(
         f"Summarise these text into 3 sentences: {full_content}")
-    
-    load_title_image(title)
 
     cwd = os.getcwd()  # Get the current working directory (cwd)
     files = os.listdir(cwd)  # Get all the files in that directory
@@ -100,6 +85,7 @@ def get_ppt_from_upload(filename):
         f.write(summary)
 
     # generate ppt
+    print("\nGenerating ppt...")
     generate_ppt(final_ppt_content, title, "research.ppt")
 
     return None
