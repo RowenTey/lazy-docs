@@ -9,8 +9,9 @@ def process_paper(text):
     # Remove unwanted characters and extra spaces
     text = re.sub(r'[^\w\s\-\:\.\']', '', text)
     text = re.sub(r'[\n\r\t]+', ' ', text)
+    text = re.sub(r'https?://\S+|www\.\S+', ' ', text)
     text = re.sub(r'\s+', ' ', text)
-    # text = re.sub(r"-\s", "", text)
+    text = re.sub(r"-\s", "", text)
 
     body = text
 
@@ -68,7 +69,7 @@ def section_detection(text):
         if match.group() != '':
             all[0].append(match.span()[0])
             all[1].append(match.span()[1])
-            title_list.append(match.group())
+            title_list.append(match.group().upper())
             count += 1
 
     # get the paragraph until next match
@@ -80,11 +81,10 @@ def section_detection(text):
             dic[title_list[i]] = cleaned_text[all[1][i]:]
 
     # remove references & acknowledgements
-    if 'Acknowledgments' in dic:
-        del dic['Acknowledgments']
-
-    if 'References' in dic:
-        del dic['References']
+    if 'ACKNOWLEDGEMENTS' in dic:
+        del dic['ACKNOWLEDGEMENTS']
+    if 'REFERENCES' in dic:
+        del dic['REFERENCES']
 
     # dic = check_dic(dic)
     # print(dic)

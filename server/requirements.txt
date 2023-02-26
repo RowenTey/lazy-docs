@@ -1,6 +1,0 @@
-farm_haystack==1.13.2
-numpy==1.23.5
-openai==0.26.5
-requests==2.28.2
-PyPDF2==2.12.1
-python-pptx==0.6.21

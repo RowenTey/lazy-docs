@@ -1,8 +1,6 @@
-# 3Chill1Chiong 
+# LazyDocs 
 
 > Submission for iNTUition v9.0
-
-<!-- ![landing](./client/assets/gifs/JustJio.gif) -->
 
 ## 📂 Project Folder Structure
 

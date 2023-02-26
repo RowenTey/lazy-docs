@@ -51,7 +51,7 @@ const Start = () => {
     <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
       <div className="bg-slate-500 w-screen h-screen flex justify-center items-center">
         <div className="bg-slate-900 text-white text-center p-10 rounded min-w-500">
-          <h1 className="font-extrabold text-4xl p-3">3Chill 1Chiong</h1>
+          <h1 className="font-extrabold text-4xl p-3">LazyDocs</h1>
           <div>
             <label htmlFor="file-format">Choose a format: </label>
             <select

@@ -4,10 +4,12 @@ from model.lib.read_file import read_file
 from model.lib.preprocess import section_detection
 from model.lib.generate_ppt import generate_ppt
 from model.lib.postprocess import clean_array_dict, clean_ppt_content
+from dotenv import load_dotenv
 import os
 import requests
 
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI-KEY")
 
 
 def respond(prompt, max_tokens=2048):
@@ -76,10 +78,6 @@ def get_ppt_from_upload(filename):
         f"Give an appropriate title based on this text: {full_content}")
     summary = respond(
         f"Summarise these text into 3 sentences: {full_content}")
-
-    cwd = os.getcwd()  # Get the current working directory (cwd)
-    files = os.listdir(cwd)  # Get all the files in that directory
-    print("Files in %r: %s" % (cwd, files))
     
     with open('../data/summary.txt', "w") as f:
         f.write(summary)

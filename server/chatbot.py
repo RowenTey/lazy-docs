@@ -5,6 +5,7 @@ from haystack.nodes import OpenAIAnswerGenerator
 from haystack.schema import Document
 from flask_cors import cross_origin
 import openai
+import os
 
 
 bp = Blueprint("chatbot", __name__, url_prefix="/chatbot")
@@ -32,7 +33,7 @@ def ask():
             docs.append(Document(line))
     
     node = OpenAIAnswerGenerator(
-        api_key="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",
+        api_key=os.getenv("OPENAI-KEY"),
         model="text-davinci-003",
         max_tokens=80,
         presence_penalty=0.1,

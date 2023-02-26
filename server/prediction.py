@@ -24,7 +24,6 @@ def upload():
         file.save("../data/upload.pdf")
     except:
         return "Error in file", 400
-    print(file)
     return {"status": "success"}
 
 

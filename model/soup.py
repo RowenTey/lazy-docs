@@ -1,13 +1,16 @@
 import requests
 import openai
+import os
 from bs4 import BeautifulSoup
 from model.lib.keyphrase import extract_keyphrase
 from model.lib.text_summarizer import summarise
 from model.lib.preprocess import section_detection
 from model.lib.generate_ppt import generate_ppt
 from model.lib.postprocess import clean_array_dict, clean_ppt_content
+from dotenv import load_dotenv
 
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI-KEY")
 
 def respond(prompt, max_tokens=2048):
     completion = openai.Completion.create(
@@ -91,6 +94,7 @@ def get_ppt_from_url(url):
         f.write(summary)
 
     # generate ppt
+    print("\nGenerating ppt...")
     generate_ppt(final_ppt_content, title, "research.ppt")
 
     return None

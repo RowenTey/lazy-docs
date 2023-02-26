@@ -3,7 +3,8 @@ import prediction
 import chatbot
 import os
 from flask_cors import CORS, cross_origin
-# from werkzeug.serving import WSGIRequestHandler
+from dotenv import load_dotenv
+
 
 def create_app(test_config = None):
     app = Flask(__name__, instance_relative_config=True)
@@ -31,5 +32,5 @@ def create_app(test_config = None):
 
 if __name__ == "__main__":
     app = create_app()
-    # WSGIRequestHandler.protocol_version = "HTTP/1.1"
+    load_dotenv()
     app.run(debug=True)

@@ -77,7 +77,7 @@ const PosterPage = () => {
 						</button>
 					</div>
 					<div className="flex flex-col bg-[#15203b] w-[600px] px-4 ml-10 rounded-sm">
-						<div className="flex flex-col">
+						<div className="flex flex-col py-3">
 							<h2 className="text-white text-xl font-bold py-2 mb-2">
 								Headline
 							</h2>
