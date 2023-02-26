@@ -18,7 +18,7 @@ const Poster = ({
 	console.log(image);
 	return (
 		<div
-			className={`w-[450px] h-[600px]`}
+			className={`w-[450px] h-[100%]`}
 			style={{
 				backgroundColor: backgroundColor,
 			}}

@@ -1,15 +1,13 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Poster from "./Poster";
 import leftSymbol from "../../assets/left-symbol.svg";
 import html2canvas from "html2canvas";
-import summaryData from "../../../../data/summary.txt";
 import { Link } from "react-router-dom";
+import summaryData from "../../../../data/summary.txt";
 
 const PosterPage = () => {
 	const [headline, setHeadline] = useState("Your title here");
-	const [summary, setSummary] = useState(
-		""
-	);
+	const [summary, setSummary] = useState("");
 	const [backgroundColor, setBackgroundcolor] = useState("#3b5aa7");
 	const [textColor, setTextColor] = useState("#ffffff");
 	const [file, setFile] = useState(null);
@@ -35,20 +33,20 @@ const PosterPage = () => {
 	};
 
 	const readFromTxtFile = async () => {
-    fetch(summaryData)
-      .then(response => response.text())
-      .then(data => {
-        console.log(data); // The contents of the file will be logged to the console
-        setSummary(data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }
-  
+		fetch(summaryData)
+			.then(response => response.text())
+			.then(data => {
+				console.log(data); // The contents of the file will be logged to the console
+				setSummary(data.substring(0, 600));
+			})
+			.catch(error => {
+				console.error("Error:", error);
+			});
+	};
+
 	useEffect(() => {
 		readFromTxtFile();
-	}, [])
+	}, []);
 
 	return (
 		<div className="bg-slate-500 w-screen h-screen flex justify-center items-center relative">
@@ -61,7 +59,7 @@ const PosterPage = () => {
 			<div className="flex flex-col items-center py-[1rem] h-[90%] px-[1rem] rounded-lg text-start bg-[#0F172A] w-[1240px]">
 				<h1 className="font-bold text-4xl mb-6 text-white">Poster Generator</h1>
 				<div className="flex flex-row justify-between">
-					<div>
+					<div className="py-2">
 						<Poster
 							backgroundColor={backgroundColor}
 							headline={headline}
@@ -93,7 +91,7 @@ const PosterPage = () => {
 							<textarea
 								className="bg-[#1e2e54] rounded-md py-2 px-3 text-white mb-2"
 								cols="40"
-								rows="10"
+								rows="6"
 								maxLength="600"
 								onChange={e => setSummary(e.target.value)}
 								value={summary}

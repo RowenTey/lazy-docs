@@ -21,6 +21,7 @@ def create_app(test_config = None):
     
     app.register_blueprint(prediction.bp)
     app.register_blueprint(chatbot.bp)
+    # app.register_blueprint(poster.bp)
     
     @app.route("/")
     def hello():
