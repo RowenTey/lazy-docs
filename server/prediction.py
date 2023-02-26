@@ -33,19 +33,13 @@ def upload():
 def predict():
     file_path = None
     try:
-        from_upload = request.get_json()
-        url = request.get_json()
-        file_path = request.get_json()
-        print(from_upload, url, file_path)
-        if (url and from_upload == 1):
-            res = get_ppt_from_url(url)
+        req_body = request.get_json()
+        print(req_body)
+        if (req_body["url"] and not req_body["from_upload"]):
+            res = get_ppt_from_url(req_body["url"])
         else:
-            res = get_ppt_from_upload(file_path["file_path"])
+            res = get_ppt_from_upload(req_body["file_path"])
     except:
         return "Error in body", 400
-
-    if not file_path:
-        return "Something went wrong", 404
-
 
     return {"status": "success"}

@@ -21,7 +21,7 @@ def clean_2d_array(arr):
 
         # add the cleaned row to the cleaned array
         cleaned_arr.append(cleaned_row)
-    print("=== Finished cleaning === ")
+
     return cleaned_arr
 
 

@@ -60,8 +60,8 @@ const Start = () => {
               id="file-format"
               onChange={selectHandler}
             >
-              <option value="0">PDF File</option>
-              <option value="1">Webpage Link</option>
+              <option className="ps-0" value="0">PDF File</option>
+              <option className="ps-0" value="1">Webpage Link</option>
             </select>
           </div>
           {format == 0 && <PDFUploader />}
@@ -69,7 +69,7 @@ const Start = () => {
           <button
             type="button"
             onClick={handleNext}
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-md px-10 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-md px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Next
           </button>
