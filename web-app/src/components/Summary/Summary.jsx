@@ -44,12 +44,6 @@ const Summary = () => {
 
       // create a URL for the blob
       const url = URL.createObjectURL(blob);
-
-    
-					// let a = document.createElement('a');
-					// a.href = url;
-					// a.download = 'employees.json';
-					// a.click();
       
       const link = document.createElement('a');
       link.href = url;
