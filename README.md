@@ -10,21 +10,22 @@
 
 ```terminal
 .
-├── data         # lab deliverables
-├── model               # react native app
-├── output               # go app
-├── server
-├── output
+├── data        
+├── model              # NLP models
+├── output             
+├── server             # Flask app
+├── web-app            # React app
+├── igitignore
 ├── LICENSE
 └── README.md
 ```
 
 ## 🧪 Tech Stack
 <p>
-  <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" >
-  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" >
-  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" >
-  <img src="https://img.shields.io/badge/Google_Cloud-FF8552?style=for-the-badge&logo=google-cloud&logoColor=white" >
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" >
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" >
+  <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" >
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white" >
 </p>
 
 ## 🧠 Contributors - Team OneStart 🏆🤟🏼
