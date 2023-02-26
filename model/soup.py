@@ -14,6 +14,19 @@ def respond(prompt, max_tokens=2048):
         engine="text-davinci-003", prompt=prompt, max_tokens=max_tokens)
     return completion.choices[0]['text']
 
+def load_title_image(title):
+    response = openai.Image.create(
+        prompt=title,
+        n=1,
+        size="1280x720"
+    )
+    image_url = response['data'][0]['url']
+
+    img_data = requests.get(image_url).content
+    with open('../output/title_image.jpg', 'wb') as handler:
+        handler.write(img_data)
+    return None
+
 def get_ppt_from_url(url):
     # Define the URL of the website to summarize
     # url = "https://doi.org/10.7554/eLife.80379"
