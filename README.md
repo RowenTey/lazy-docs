@@ -10,7 +10,7 @@
 
 ```terminal
 .
-├── data        
+├── data               # database
 ├── model              # NLP models
 ├── server             # Flask app
 ├── web-app            # React app
