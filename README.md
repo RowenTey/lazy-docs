@@ -8,11 +8,11 @@
 
 ```terminal
 .
+├── client             # React app
 ├── data               # database
 ├── model              # NLP models
 ├── server             # Flask app
-├── web-app            # React app
-├── igitignore
+├── .gitignore
 ├── LICENSE
 ├── README.md
 └── requirements.txt
