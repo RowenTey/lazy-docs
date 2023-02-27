@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import Start from "./components/Start/Start";
 import Summary from "./components/Summary/Summary";

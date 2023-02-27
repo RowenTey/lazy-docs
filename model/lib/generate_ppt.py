@@ -4,7 +4,7 @@ from pptx.util import Pt, Inches
 
 
 def generate_ppt(content, ppt_title="Research Paper Summary", filename="research_summary.ppt"):
-    directory = os.path.join(os.getcwd(), '..', 'web-app/public')
+    directory = os.path.join(os.getcwd(), '..', 'client/public')
     if not os.path.exists(directory):
         os.makedirs(directory)
     filepath = os.path.join(directory, filename)
