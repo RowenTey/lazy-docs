@@ -20,7 +20,7 @@
 
 ## ❓ How It Works
 
-![pipeline](./web-app/public/pipeline.png)
+![pipeline](./client/public/pipeline.png)
 
 ## 🧪 Tech Stack
 <p>
